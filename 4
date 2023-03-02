@@ -1,0 +1,547 @@
+@@ -0,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" output="target/classes" path="src/main/java">
+		<attributes>
+			<attribute name="optional" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" output="target/test-classes" path="src/test/java">
+		<attributes>
+			<attribute name="optional" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="test" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/J2SE-1.5">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="output" path="target/classes"/>
+</classpath>
+ 1  
+SeleniumProject/.gitignore
+@@ -0,0 +1 @@
+/target/
+ 23  
+SeleniumProject/.project
+@@ -0,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>SeleniumProject</name>
+	<comment></comment>
+	<projects>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>org.eclipse.jdt.core.javabuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+		<buildCommand>
+			<name>org.eclipse.m2e.core.maven2Builder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>org.eclipse.jdt.core.javanature</nature>
+		<nature>org.eclipse.m2e.core.maven2Nature</nature>
+	</natures>
+</projectDescription>
+ 4  
+SeleniumProject/.settings/org.eclipse.core.resources.prefs
+@@ -0,0 +1,4 @@
+eclipse.preferences.version=1
+encoding//src/main/java=UTF-8
+encoding//src/test/java=UTF-8
+encoding/<project>=UTF-8
+ 6  
+SeleniumProject/.settings/org.eclipse.jdt.core.prefs
+@@ -0,0 +1,6 @@
+eclipse.preferences.version=1
+org.eclipse.jdt.core.compiler.codegen.targetPlatform=1.5
+org.eclipse.jdt.core.compiler.compliance=1.5
+org.eclipse.jdt.core.compiler.problem.forbiddenReference=warning
+org.eclipse.jdt.core.compiler.release=disabled
+org.eclipse.jdt.core.compiler.source=1.5
+ 4  
+SeleniumProject/.settings/org.eclipse.m2e.core.prefs
+@@ -0,0 +1,4 @@
+activeProfiles=
+eclipse.preferences.version=1
+resolveWorkspaceProjects=true
+version=1
+ BIN +8.46 MB 
+SeleniumProject/Browser Drivers/chromedriver.exe
+Binary file not shown.
+ 39  
+SeleniumProject/pom.xml
+@@ -0,0 +1,39 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.project</groupId>
+  <artifactId>SeleniumProject</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>SeleniumProject</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
+<dependency>
+    <groupId>org.seleniumhq.selenium</groupId>
+    <artifactId>selenium-java</artifactId>
+    <version>4.7.2</version>
+</dependency>
+
+    <!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
+		<dependency>
+			<groupId>io.github.bonigarcia</groupId>
+			<artifactId>webdrivermanager</artifactId>
+			<version>5.3.0</version>
+		</dependency>
+
+  </dependencies>
+</project>
+ 13  
+SeleniumProject/src/main/java/com/project/SeleniumProject/App.java
+@@ -0,0 +1,13 @@
+package com.project.SeleniumProject;
+
+/**
+ * Hello world!
+ *
+ */
+public class App 
+{
+    public static void main( String[] args )
+    {
+        System.out.println( "Hello World!" );
+    }
+}
+ 29  
+SeleniumProject/src/test/java/com/project/SeleniumProject/AlertDemo.java
+@@ -0,0 +1,29 @@
+package com.project.SeleniumProject;
+
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class AlertDemo {
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+		WebDriverManager.chromedriver().setup();
+		WebDriver driver=new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get("https://register.rediff.com/register/register.php?FormName=user_details");
+		driver.findElement(By.id("Register")).click();
+		Thread.sleep(2000);
+		Alert alert=driver.switchTo().alert();
+		String alertText=alert.getText();
+		System.out.println(alertText);
+		alert.accept();
+
+
+
+	}
+
+}
+ 24  
+SeleniumProject/src/test/java/com/project/SeleniumProject/CheckBox.java
+@@ -0,0 +1,24 @@
+package com.project.SeleniumProject;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class CheckBox {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		WebDriverManager.chromedriver().setup();
+		WebDriver driver=new ChromeDriver();
+		driver.manage().window().maximize();
+		String url="https://www.adactinhotelapp.com";
+		driver.get(url);
+		driver.findElement(By.partialLinkText("New User")).click();
+		System.out.println(driver.getTitle());
+		driver.findElement(By.id("tnc_box")).click();
+
+	}
+
+}
+ 45  
+SeleniumProject/src/test/java/com/project/SeleniumProject/Demo.java
+@@ -0,0 +1,45 @@
+package com.project.SeleniumProject;
+
+
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class Demo {
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+		WebDriverManager.chromedriver().setup();
+		WebDriver driver=new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get("https://www.google.com");
+		try {
+		driver.switchTo().frame("callout");
+		driver.findElement(By.xpath("//button[text()='No thanks']")).click();
+		driver.switchTo().defaultContent();
+		driver.findElement(By.name("q")).sendKeys("Selenium");
+		driver.findElement(By.name("btnK")).click();
+		String actualTitle=driver.getTitle();
+		String expectedTitle="Selenium - Google Search";
+		System.out.println(actualTitle);
+		if(actualTitle.equals(expectedTitle)) {
+			System.out.println("Verified Page Title Successfully");
+		}else {
+			System.out.println("Not Verified Failed");
+		}
+
+		}catch(Exception e) {
+			System.out.println("Error-"+e);
+		}
+		finally
+		{
+			Thread.sleep(2000);
+			driver.close();
+		}
+
+	}
+
+}
+ 42  
+SeleniumProject/src/test/java/com/project/SeleniumProject/HandleWindowsDemo.java
+@@ -0,0 +1,42 @@
+package com.project.SeleniumProject;
+
+
+import java.util.Iterator;
+import java.util.Set;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class HandleWindowsDemo {
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+		WebDriverManager.chromedriver().setup();
+		WebDriver driver=new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get("https://only-testing-blog.blogspot.com/2014/01/textbox.html");
+		Thread.sleep(2000);
+		driver.findElement(By.linkText("Open New Page")).click();
+		Set<String> windowHandles=driver.getWindowHandles();
+		Iterator<String> itr=windowHandles.iterator();
+		String parentWindow=itr.next();
+		String childWindow=itr.next();
+		Thread.sleep(1000);
+		driver.switchTo().window(parentWindow);
+		Thread.sleep(1000);
+		JavascriptExecutor js=(JavascriptExecutor)driver;
+		js.executeScript("window.scrollBy(0,-400)");
+		driver.findElement(By.name("fname")).sendKeys("Faraih Islam");
+		Thread.sleep(2000);
+		driver.switchTo().window(childWindow);
+		Thread.sleep(1000);
+		driver.findElement(By.id("fname")).sendKeys("Sunny");
+
+
+	}
+
+}
+ 23  
+SeleniumProject/src/test/java/com/project/SeleniumProject/LinkDemo.java
+@@ -0,0 +1,23 @@
+package com.project.SeleniumProject;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class LinkDemo {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		WebDriverManager.chromedriver().setup();
+		WebDriver driver=new ChromeDriver();
+		driver.manage().window().maximize();
+		String url="https://www.adactinhotelapp.com";
+		driver.get(url);
+		driver.findElement(By.linkText("Forgot Password?")).click();
+		System.out.println(driver.getTitle());
+
+	}
+
+}
+ 29  
+SeleniumProject/src/test/java/com/project/SeleniumProject/NavigateCommands.java
+@@ -0,0 +1,29 @@
+package com.project.SeleniumProject;
+
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class NavigateCommands {
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+
+		WebDriverManager.chromedriver().setup();
+		WebDriver driver=new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get("https://www.google.com");
+		Thread.sleep(2000);
+		String url="https://www.amazon.com";
+		driver.get(url);
+		Thread.sleep(2000);
+		driver.navigate().back();
+		Thread.sleep(2000);
+		driver.navigate().forward();
+
+
+	}
+
+}
+ 22  
+SeleniumProject/src/test/java/com/project/SeleniumProject/PartialLink.java
+@@ -0,0 +1,22 @@
+package com.project.SeleniumProject;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class PartialLink {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		WebDriverManager.chromedriver().setup();
+		WebDriver driver=new ChromeDriver();
+		driver.manage().window().maximize();
+		String url="https://www.adactinhotelapp.com";
+		driver.get(url);
+		driver.findElement(By.partialLinkText("Forgot")).click();
+
+	}
+
+}
+ 40  
+SeleniumProject/src/test/java/com/project/SeleniumProject/PrintLinkTextDemo.java
+@@ -0,0 +1,40 @@
+package com.project.SeleniumProject;
+
+import java.time.Duration;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class PrintLinkTextDemo {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		WebDriverManager.chromedriver().setup();
+		WebDriver driver=new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get("https://www.bbc.com");
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		List<WebElement> link=driver.findElements(By.tagName("a"));
+		int size=link.size();
+		System.out.println("Total Number of elements present on webpage is :"+size);
+		try {
+		for(WebElement ele:link) {
+			String linkName=ele.getText();
+			if(linkName.length()>0)
+			System.out.println(linkName);	
+		}
+		}catch(Exception e) {
+			System.out.println(e);
+		}
+		String pageTitle=driver.getCurrentUrl();
+		System.out.println(pageTitle);
+		driver.close();
+
+	}
+
+}
+ 31  
+SeleniumProject/src/test/java/com/project/SeleniumProject/TakeScreenshotDemo.java
+@@ -0,0 +1,31 @@
+package com.project.SeleniumProject;
+
+import java.io.File;
+import java.io.IOException;
+import java.time.Duration;
+
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class TakeScreenshotDemo {
+
+	public static void main(String[] args) throws IOException {
+		// TODO Auto-generated method stub
+		WebDriverManager.chromedriver().setup();
+		WebDriver driver=new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get("https://www.amazon.com");
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		TakesScreenshot ts=(TakesScreenshot)driver;
+		File source=ts.getScreenshotAs(OutputType.FILE);
+		File destination=new File("/home/islamfaraih5gma/Desktop/Screenshot/screensh.png");
+		FileUtils.copyFile(source, destination);
+
+	}
+
+}
+ 33  
+SeleniumProject/src/test/java/com/project/SeleniumProject/Test.java
+@@ -0,0 +1,33 @@
+package com.project.SeleniumProject;
+
+import java.time.Duration;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class Test {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		WebDriverManager.chromedriver().setup();
+		WebDriver driver=new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get("https://www.google.com");
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		WebElement ele=driver.findElement(By.name("q"));
+		ele.sendKeys("Amazon");
+		ele.sendKeys(Keys.ENTER);
+		driver.findElement(By.xpath("//*[contains(text(),'Amazon.com')]")).click();
+		List<WebElement> elem=driver.findElements(By.tagName("a"));
+		int size=elem.size();
+		System.out.println("Total Number of Elements is:"+size);
+
+	}
+
+}
+ 22  
+SeleniumProject/src/test/java/com/project/SeleniumProject/TextBox.java
+@@ -0,0 +1,22 @@
+package com.project.SeleniumProject;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class TextBox {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		WebDriverManager.chromedriver().setup();
+		WebDriver driver=new ChromeDriver();
+		driver.manage().window().maximize();
+		String url="https://www.adactinhotelapp.com";
+		driver.get(url);
+		driver.findElement(By.id("username")).sendKeys("Test");
+
+	}
+
+}
+ 29  
+SeleniumProject/src/test/java/com/project/SeleniumProject/WaitImplicitExplicitWaitDemo.java
+@@ -0,0 +1,29 @@
+package com.project.SeleniumProject;
+
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class WaitImplicitExplicitWaitDemo {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		WebDriverManager.chromedriver().setup();
+		WebDriver driver=new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get("https://www.google.com");
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		driver.findElement(By.name("q")).sendKeys("Selenium");
+		WebDriverWait wait=new WebDriverWait(driver,Duration.ofSeconds(10));
+		WebElement ele=wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("btnK")));
+		ele.click();
+	}
+
+}
