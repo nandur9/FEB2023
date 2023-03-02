@@ -1,0 +1,294 @@
+@@ -0,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-18">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
+ 1  
+LabJavaPrograms/.gitignore
+@@ -0,0 +1 @@
+/bin/
+ 17  
+LabJavaPrograms/.project
+@@ -0,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>LabJavaPrograms</name>
+	<comment></comment>
+	<projects>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>org.eclipse.jdt.core.javabuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>org.eclipse.jdt.core.javanature</nature>
+	</natures>
+</projectDescription>
+ 2  
+LabJavaPrograms/.settings/org.eclipse.core.resources.prefs
+@@ -0,0 +1,2 @@
+eclipse.preferences.version=1
+encoding/<project>=UTF-8
+ 14  
+LabJavaPrograms/.settings/org.eclipse.jdt.core.prefs
+@@ -0,0 +1,14 @@
+eclipse.preferences.version=1
+org.eclipse.jdt.core.compiler.codegen.inlineJsrBytecode=enabled
+org.eclipse.jdt.core.compiler.codegen.targetPlatform=18
+org.eclipse.jdt.core.compiler.codegen.unusedLocal=preserve
+org.eclipse.jdt.core.compiler.compliance=18
+org.eclipse.jdt.core.compiler.debug.lineNumber=generate
+org.eclipse.jdt.core.compiler.debug.localVariable=generate
+org.eclipse.jdt.core.compiler.debug.sourceFile=generate
+org.eclipse.jdt.core.compiler.problem.assertIdentifier=error
+org.eclipse.jdt.core.compiler.problem.enablePreviewFeatures=disabled
+org.eclipse.jdt.core.compiler.problem.enumIdentifier=error
+org.eclipse.jdt.core.compiler.problem.reportPreviewFeatures=warning
+org.eclipse.jdt.core.compiler.release=enabled
+org.eclipse.jdt.core.compiler.source=18
+ 21  
+LabJavaPrograms/src/program/practice/CompareToDemo.java
+@@ -0,0 +1,21 @@
+package program.practice;
+
+public class CompareToDemo {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		String name="Faraih";
+		String name1="Faraih";
+		String name2="Sunny";
+		char ch='I';
+		String strDouble;
+		System.out.println("name Compare name1 is :"+name.compareTo(name1));
+		System.out.println("name Compare name1 is :"+name.compareTo(name2));
+		System.out.println(name.concat(name2));
+		strDouble=String.format("%.2f", 44.56867);
+		System.out.println(strDouble);
+
+
+	}
+
+}
+ 25  
+LabJavaPrograms/src/program/practice/ExceptionDemo.java
+@@ -0,0 +1,25 @@
+package program.practice;
+
+public class ExceptionDemo {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int num=4;
+		int num1=0;
+		int num2;
+		try {
+		num2=num/num1;
+		System.out.println(num2);
+		int a[]= {2,4,6};
+		a[10]=6;
+		System.out.println("45");
+		}catch(ArithmeticException e) {
+			System.out.println(e);
+		}catch(ArrayIndexOutOfBoundsException e) {
+			System.out.println(e);
+		}
+		System.out.println("Exception is occurred");
+
+	}
+
+}
+ 15  
+LabJavaPrograms/src/program/practice/StringBufferDemo.java
+@@ -0,0 +1,15 @@
+package program.practice;
+
+public class StringBufferDemo {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		StringBuffer sf=new StringBuffer("Hello");
+		System.out.println(sf);
+		System.out.println(sf.length());
+		sf.append("World");
+		System.out.println(sf);
+
+	}
+
+}
+ 16  
+LabJavaPrograms/src/program/practice/StringBuilderDemo.java
+@@ -0,0 +1,16 @@
+package program.practice;
+
+public class StringBuilderDemo {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		StringBuilder sb=new StringBuilder("Welcome to Java");
+		System.out.println(sb);
+		System.out.println(sb.length());
+		sb.append("World");
+		System.out.println(sb);
+
+
+	}
+
+}
+ 22  
+LabJavaPrograms/src/program/practice/StringDemo.java
+@@ -0,0 +1,22 @@
+package program.practice;
+
+public class StringDemo {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		char c[]= {'j','a','v','a'};
+		String str=new String(c);
+		System.out.println(str);
+		String str1=new String(str);
+		System.out.println(str1);
+		int length=str1.length();//count of characters in a String
+		System.out.println("Length of String is:"+length);
+		System.out.println("Character at index 1 is:"+str.charAt(1));
+		System.out.println(str.equals(str1));
+		String str2="Java";
+		System.out.println(str1.equals(str2));
+		System.out.println(str1.equalsIgnoreCase(str2));
+
+	}
+
+}
+ 29  
+LabJavaPrograms/src/program/practice/StringReplaceDemo.java
+@@ -0,0 +1,29 @@
+package program.practice;
+
+public class StringReplaceDemo {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		String org="Selenium is used for WebBased Application";
+		String search="Selenium";
+		String replace="Automation Testing";
+		String result=org;
+		int i;
+
+		do {
+			System.out.println("Orignal String is :"+org);
+			i=org.indexOf(search);
+			System.out.println(i);
+			if(i!=-1) {
+				result=org.substring(0, i);
+				result=result+replace;
+				result=result+org.substring(i+search.length());
+				System.out.println(result);
+				org=result;
+			}
+		}while(i!=-1);
+
+
+	}
+
+}
+ 20  
+LabJavaPrograms/src/program/practice/ThrowDemo.java
+@@ -0,0 +1,20 @@
+package program.practice;
+
+public class ThrowDemo {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int x=4;
+		int y=2;
+		try {
+			if(x==4) {
+				throw new ArithmeticException();
+			}
+
+		}catch(ArithmeticException e) {
+			System.out.println(e);
+		}
+		System.out.println(y);
+	}
+
+}
+ 19  
+LabJavaPrograms/src/program/practice/ThrowsDemo.java
+@@ -0,0 +1,19 @@
+package program.practice;
+
+public class ThrowsDemo {
+
+	public void method() throws InterruptedException {
+		System.out.println("First Executing");
+		Thread.sleep(1000);
+		System.out.println("Second Executing");
+	}
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+		ThrowsDemo td=new ThrowsDemo();
+		td.method();
+
+
+	}
+
+}
+ 43  
+LabJavaPrograms/src/program/practice/TimeDateDemo.java
+@@ -0,0 +1,43 @@
+package program.practice;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
+
+public class TimeDateDemo {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		LocalDate ld=LocalDate.now();
+		System.out.println("Today's Date-"+ld);
+		LocalDate ldate=LocalDate.now(ZoneId.of("Asia/Kolkata"));
+		System.out.println("Today's Date-"+ldate);
+
+		System.out.println("---------------------------------");
+
+		LocalTime lt=LocalTime.now();
+		System.out.println("Today's Time-"+lt);
+		LocalTime ltime=LocalTime.now(ZoneId.of("Asia/Kolkata"));
+		System.out.println("Today's Time-"+ltime);
+
+		System.out.println("---------------------------------");
+
+		LocalDateTime ldt=LocalDateTime.now();
+		System.out.println("Today's Date_Time -"+ldt);
+		LocalDateTime ldtime=LocalDateTime.now(ZoneId.of("Asia/Kolkata"));
+		System.out.println("Today's Date_Time -"+ldtime);
+
+		System.out.println("---------------------------------");
+
+		LocalDate dateFormat = LocalDate.now(ZoneId.of("Asia/Kolkata"));
+		System.out.println(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL).format(dateFormat));
+		System.out.println(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG).format(dateFormat));
+		System.out.println(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM).format(dateFormat));
+		System.out.println(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT).format(dateFormat));
+
+	}
+
+}
